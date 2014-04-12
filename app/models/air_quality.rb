@@ -13,7 +13,7 @@ class AirQuality < ActiveRecord::Base
 
   private
 
-  def self.format_air_quality(response, zipcode)
+  def self.format_air_quality_hash(response, zipcode)
     {
         zipcode: zipcode,
         aqi: response.first['AQI'],
