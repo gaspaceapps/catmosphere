@@ -1,7 +1,7 @@
 class AirQuality < ActiveRecord::Base
   def self.get(zipcode)
     cached_air_quality = self.find_by(zipcode: zipcode)
-    if cached_air_quality
+    if cached_air_quality and cached_air_quality.updated_at < (cached_air_quality.updated_at + 1.hour)
       cached_air_quality
     else
       endpoint = self.compile_today_endpoint(zipcode)
