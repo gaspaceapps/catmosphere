@@ -9,5 +9,10 @@ class Location < ActiveRecord::Base
 
   aqi = parsed_data.first['AQI']
 
+  def self.parse_from_cookie(cookie)
+    parsed_cookie = cookie.split('|')
+    { latitude: parsed_cookie.first, longitude: parsed_cookie.last }
+  end
+
 
 end
