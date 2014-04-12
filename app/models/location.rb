@@ -1,18 +1,19 @@
 class Location < ActiveRecord::Base
-
-  def initialize
-  @endpoint = "http://www.airnowapi.org/aq/observation/latLong/current/?format=application/json&latitude=#{lat}&longitude=-#{long}&distance=25&API_KEY=408731F5-9C4F-4791-A3B9-E5BA5EE0F591"
-  end
-
-  response = RestClient.get(endpoint)
-  parsed_data = JSON.parse(response)
-
-  aqi = parsed_data.first['AQI']
-
   def self.parse_from_cookie(cookie)
-    parsed_cookie = cookie.split('|')
-    { latitude: parsed_cookie.first, longitude: parsed_cookie.last }
+    split_cookie = cookie.split('|')
+    parsed_cookie = { latitude: split_cookie.first, longitude: split_cookie.last }
+    self.cacheify(parsed_cookie)
   end
 
+  def self.cacheify(cookie)
+    zipcode = self.get_zipcode(cookie[:latitude], cookie[:longitude])
+    self.find_or_create_by(zipcode: zipcode) do |location|
+      location.latitude = cookie[:latitude]
+      location.longitude = cookie[:longitude]
+    end
+  end
 
+  def self.get_zipcode(latitude, longitude)
+    Geocoder.search("#{latitude},#{longitude}").first.data['address_components'].last['long_name']
+  end
 end
