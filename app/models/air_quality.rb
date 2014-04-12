@@ -6,7 +6,7 @@ class AirQuality < ActiveRecord::Base
     else
       endpoint = self.compile_today_endpoint(zipcode)
       parsed_response = JSON.parse(RestClient.get(endpoint))
-      format_air_quality_hash(parsed_response, zipcode)
+      air_quality_response = format_air_quality_hash(parsed_response, zipcode)
       self.cacheify(air_quality_response)
     end
   end
