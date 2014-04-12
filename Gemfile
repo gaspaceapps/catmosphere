@@ -19,6 +19,12 @@ group :development do
   gem 'binding_of_caller'
 end
 
+group :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+end
+
 group :doc do
   gem 'sdoc', require: false
 end
