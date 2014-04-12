@@ -37,4 +37,10 @@ class AirQuality < ActiveRecord::Base
   def self.compile_today_endpoint(zipcode)
     "http://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=#{zipcode}&distance=25&API_KEY=408731F5-9C4F-4791-A3B9-E5BA5EE0F591"
   end
+
+  def self.compile_past_endpoint(zipcode)
+    #date format 2014-04-11T00-0000
+    "http://www.airnowapi.org/aq/observation/zipCode/historical/?format=application/json&zipCode=#{zipcode}&date=#{date}&distance=25&API_KEY=408731F5-9C4F-4791-A3B9-E5BA5EE0F591"
+  end
+
 end
