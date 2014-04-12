@@ -1,5 +1,37 @@
-<% if @air_quality %>
-<h1>Your air quality is: <%= @air_quality.category_name %></h1>
-<% else %>
-<h1>Please wait while we determine your location</h1>
-<% end %>
+<div class="info">
+	<p>April 12, 2014</p>
+</div>
+
+<div class="panel">
+	<% if @air_quality %>
+	<img src="http://placehold.it/250x300" alt="">
+	<ul class="aqi_list">
+		<li>
+			<div class="aqi_block">
+				<h1 class="value">89</h1>
+				<h1>Last Year</h1>
+			</div>
+		</li>
+		<li>
+			<div class="aqi_block">
+				<h1 class="value">90</h1>
+				<h1>Yesterday</h1>
+			</div>
+		</li>
+		<li>
+			<div class="aqi_block">
+				<h1 class="value today"><%= @air_quality.category_name %></h1>
+				<h1>Today</h1>
+			</div>
+		</li>
+		<li>
+			<div class="aqi_block">
+				<h1 class="value">40</h1>
+				<h1>Tomorrow</h1>
+			</div>
+		</li>
+	</ul>
+	<% else %>
+	<h1>Please wait while we determine your location</h1>
+	<% end %>
+</div>

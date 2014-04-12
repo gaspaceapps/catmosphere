@@ -1,3 +1,56 @@
 // Place all the styles related to the Dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+	background-color: #f5f5f5;
+	font-family: 'Open Sans Condensed';
+	text-transform: uppercase;
+	color: gray;
+}
+
+.panel {
+  width: 500px;
+  height: 400px;
+  padding: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -300px 0 0 -300px;
+  text-align: center;
+  /*background-color: lightgray;*/
+  img { margin-bottom: 20px; }
+  .value {
+  	font-size: 46px;
+  	margin-bottom: 10px;
+  }
+  .today {
+		color: orange;
+		font-size: 56px;
+	}
+	h1 { font-size: 28px; margin: 0; }
+}
+
+@media (max-width: 600px) {
+	.clear { clear: both; }
+
+	.panel {
+		width: 200px;
+		height: 400px;
+		padding: 50px;
+		margin: -400px 0 0 -150px;
+		img {
+			width: 200px;
+		}
+		}
+}
+
+.aqi_list {
+	li {
+		display: inline-block;
+		margin: 10px;
+	}
+}
+
+.info {
+	margin: 10px 0 0 10px;
+}
