@@ -15,17 +15,9 @@ ActiveRecord::Schema.define(version: 20140412195310) do
 
   create_table "air_qualities", force: true do |t|
     t.integer  "aqi"
-    t.integer  "location_id"
+    t.integer  "zipcode"
     t.integer  "category_number"
     t.string   "category_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "locations", force: true do |t|
-    t.float    "latitude"
-    t.float    "longitude"
-    t.integer  "zipcode"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

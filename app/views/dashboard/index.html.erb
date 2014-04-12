@@ -1,5 +1,5 @@
 <% if @air_quality %>
-<h1>Your air quality is: <%= @air_quality.first['AQI'] %></h1>
+<h1>Your air quality is: <%= @air_quality.category_name %></h1>
 <% else %>
 <h1>Please wait while we determine your location</h1>
 <% end %>
