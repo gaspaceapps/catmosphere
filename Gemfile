@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
+gem 'rest-client'
 gem 'geocoder'
 
 group :production do
