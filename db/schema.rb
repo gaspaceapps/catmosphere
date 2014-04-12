@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20140412181339) do
 
   create_table "locations", force: true do |t|
-    t.integer  "lat"
-    t.integer  "long"
+    t.float    "lat"
+    t.float    "long"
     t.integer  "zipcode"
     t.integer  "categoryNumber"
     t.datetime "created_at"
