@@ -25,11 +25,22 @@ class AirQuality < ActiveRecord::Base
     format_air_quality_hash(parsed_response, zipcode)
   end
 
+  def self.get_yesterday_temp(zipcode)
+    endpoint = self.compile_yesterday_temp(zipcode)
+    parsed_response = JSON.parse(RestClient.get(endpoint))
+    parsed_response['history']['dailysummary'].first['maxtempi']
+  end
 
   def self.get_temp(zipcode)
     endpoint = self.compile_temp_endpoint(zipcode)
     parsed_response = JSON.parse(RestClient.get(endpoint))
     parsed_response['current_observation']['temp_f']
+  end
+
+  def self.get_tomorrow_temp(zipcode)
+    endpoint = self.compile_tomorrow_temp(zipcode)
+    parsed_response = JSON.parse(RestClient.get(endpoint))
+    parsed_response['forecast']['simpleforecast']['forecastday'].second['high']['fahrenheit']
   end
 
   private
@@ -63,7 +74,15 @@ class AirQuality < ActiveRecord::Base
     "http://www.airnowapi.org/aq/forecast/zipCode/?format=application/json&zipCode=#{zipcode}&date=#{(Time.now + 1.days).strftime('%F')}&distance=25&API_KEY=408731F5-9C4F-4791-A3B9-E5BA5EE0F591"
   end
 
+  def self.compile_yesterday_temp(zipcode)
+    "http://api.wunderground.com/api/c0439c00830cfcd0/history_#{(Time.now - 1.days).strftime('%F').tr('-','')}/q/#{zipcode}.json"
+  end
+
   def self.compile_temp_endpoint(zipcode)
     "http://api.wunderground.com/api/c0439c00830cfcd0/geolookup/conditions/q/IA/#{zipcode}.json"
+  end
+
+  def self.compile_tomorrow_temp(zipcode)
+    "http://api.wunderground.com/api/c0439c00830cfcd0/forecast/q/#{zipcode}.json"
   end
 end
