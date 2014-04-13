@@ -32,7 +32,10 @@
 		</li>
 	</ul>
 	<% else %>
-	<h1>Please wait while we determine your location</h1>
+	<div class="loading">
+		<%= image_tag(asset_path('astronaut.png')) %>
+	</div>
+	<h1>Loading...</h1>
 	<% end %>
 </div>
 
@@ -46,3 +49,4 @@
 		lists.each(function(i){ $(this).delay(300*i).animate({opacity:1}); });
 	});
 </script>
+

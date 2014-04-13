@@ -33,6 +33,9 @@ body {
 	h1 { font-size: 28px; margin: 0; }
 	h1:nth-child(2) { margin-bottom: 20px; }
 	h1:nth-child(3) { font-size: 20px; }
+	.loading img {
+		width: 150px;
+	}
 }
 
 @media (max-width: 600px) {
@@ -44,7 +47,7 @@ body {
 		padding: 50px;
 		margin: -400px 0 0 -150px;
 		.image_set {
-			img { width: 200px; }
+			img { width: 200px; margin-top: 30px; }
 		}
 	}
 }
@@ -59,4 +62,30 @@ body {
 .info {
 	margin: 15px 0 0 15px;
 	font-size: 30px;
+}
+
+/* ANIMATION */
+.loading {
+	-webkit-animation-name:loading;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count:infinite;
+	/*-webkit-animation-direction:alternate;*/
+	-webkit-animation-timing-function:ease;
+	
+	-moz-animation-name:loading;
+	-moz-animation-duration:2s;
+	-moz-animation-iteration-count:infinite;
+	/*-moz-animation-direction:alternate;*/
+	-moz-animation-timing-function:ease;
+}
+
+@-webkit-keyframes loading {
+	0% {-webkit-transform:translate(0, 0);}
+	50% {-webkit-transform:translate(0, -10px);}
+	100% {-webkit-transform:translate(0, 0);}
+}
+@-moz-keyframes loading {
+	0% {-moz-transform:translate(0, 0);}
+	50% {-moz-transform:translate(0, -10px);}
+	100% {-moz-transform:translate(0, 0);}
 }
