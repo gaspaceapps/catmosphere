@@ -10,7 +10,7 @@
 <div class="panel">
 	<% if @air_quality %>
 	<div class="image_set" style="background: url(<%= asset_path(determine_image(@air_quality.category_name)[:bg]) %>) no-repeat">
-		<%= image_tag determine_image(@air_quality.category_name)[:cat] %>
+		<%= image_tag determine_image(@air_quality.category_name)[:cat], :class => "move" %>
 	</div>
 	<ul class="aqi_list">
 		<li>

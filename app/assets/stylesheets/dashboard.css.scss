@@ -100,3 +100,28 @@ body {
 	50% {-moz-transform:translate(0, -10px);}
 	100% {-moz-transform:translate(0, 0);}
 }
+
+.move {
+	-webkit-animation-name:move;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count:infinite;
+	/*-webkit-animation-direction:alternate;*/
+	-webkit-animation-timing-function:ease;
+	
+	-moz-animation-name:move;
+	-moz-animation-duration:2s;
+	-moz-animation-iteration-count:infinite;
+	/*-moz-animation-direction:alternate;*/
+	-moz-animation-timing-function:ease;
+}
+
+@-webkit-keyframes move {
+	0% {-webkit-transform:translate(0, 0);}
+	50% {-webkit-transform:translate(-10px, 0);}
+	100% {-webkit-transform:translate(0, 0);}
+}
+@-moz-keyframes move {
+	0% {-moz-transform:translate(0, 0);}
+	50% {-moz-transform:translate(-10px, 0);}
+	100% {-moz-transform:translate(0, 0);}
+}
