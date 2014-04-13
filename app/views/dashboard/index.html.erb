@@ -4,11 +4,13 @@
 
 <div class="panel">
 	<% if @air_quality %>
-	<%= image_tag 'excellent.png' %>
+	<div class="image_set" style="background: url(<%= asset_path(determine_image(@air_quality.category_name)[:bg]) %>) no-repeat">
+		<%= image_tag determine_image(@air_quality.category_name)[:cat] %>
+	</div>
 	<ul class="aqi_list">
 		<li>
 			<div class="aqi_block">
-				<h1 class="value">89</h1>
+				<h1 class="value">N/A</h1>
 				<h1>Last Year</h1>
 			</div>
 		</li>
@@ -27,7 +29,7 @@
 		</li>
 		<li>
 			<div class="aqi_block">
-				<h1 class="value"><%= @tomorrow_air_quality[:aqi] %></h1>
+				<h1 class="value tomorrow"><%= @tomorrow_air_quality[:aqi] %></h1>
 				<h1>Tomorrow</h1>
 			</div>
 		</li>
