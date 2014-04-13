@@ -10,15 +10,14 @@ class AirQuality < ActiveRecord::Base
     end
   end
 
+  def self.get_yesterday(zipcode)
+    endpoint = self.compile_today_endpoint(zipcode)
+    air_quality_response = self.fetch(endpoint, zipcode)
+  end
 
   def self.fetch(endpoint, zipcode)
     parsed_response = JSON.parse(RestClient.get(endpoint))
     format_air_quality_hash(parsed_response, zipcode)
-  end
-
-  def self.get_yesterday(zipcode)
-      endpoint = self.compile_today_endpoint(zipcode)
-      air_quality_response = self.fetch(endpoint, zipcode)
   end
 
   private
@@ -46,7 +45,7 @@ class AirQuality < ActiveRecord::Base
 
   def self.compile_yesterday_endpoint(zipcode)
     #date format 2014-04-11T00-0000
-    "http://www.airnowapi.org/aq/observation/zipCode/historical/?format=application/json&zipCode=#{zipcode}&date=#{timezone_offset}&distance=25&API_KEY=408731F5-9C4F-4791-A3B9-E5BA5EE0F591"
+    "http://www.airnowapi.org/aq/observation/zipCode/historical/?format=application/json&zipCode=#{zipcode}&date=#{(Time.now - 24.hours).strftime('%F')}T00-0000&distance=25&API_KEY=408731F5-9C4F-4791-A3B9-E5BA5EE0F591"
   end
 
 end
