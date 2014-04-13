@@ -25,6 +25,13 @@ class AirQuality < ActiveRecord::Base
     format_air_quality_hash(parsed_response, zipcode)
   end
 
+
+  def self.get_temp(zipcode)
+    endpoint = self.compile_temp_endpoint(zipcode)
+    parsed_response = JSON.parse(RestClient.get(endpoint))
+    parsed_response['current_observation']['temp_f']
+  end
+
   private
 
   def self.format_air_quality_hash(response, zipcode)
@@ -59,4 +66,11 @@ class AirQuality < ActiveRecord::Base
   def self.compile_year_endpoint(zipcode)
     "http://www.airnowapi.org/aq/observation/zipCode/historical/?format=application/json&zipCode=#{zipcode}&date=#{(Time.now - 1.year).strftime('%F')}T00-0000&distance=25&API_KEY=408731F5-9C4F-4791-A3B9-E5BA5EE0F591"
   end
+
+
+  def self.compile_temp_endpoint(zipcode)
+    "http://api.wunderground.com/api/c0439c00830cfcd0/geolookup/conditions/q/IA/#{zipcode}.json"
+  end
+
+
 end
