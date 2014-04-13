@@ -1,10 +1,10 @@
 <div class="info">
-  <p><%= (Time.now).strftime('%B %-d, %Y') %></p>
+	<p><%= Date.today.strftime('%B %d, %Y (%a)') %></p>
 </div>
 
 <div class="panel">
 	<% if @air_quality %>
-	<img src="http://placehold.it/250x300" alt="">
+	<%= image_tag 'excellent.png' %>
 	<ul class="aqi_list">
 		<li>
 			<div class="aqi_block">
@@ -35,3 +35,14 @@
 	<h1>Please wait while we determine your location</h1>
 	<% end %>
 </div>
+
+<script>
+	$(function() {
+		var img = $("img");
+		img.css({opacity: 0});
+		img.each(function(i){ $(this).delay(200*i).animate({opacity:1}); });
+		var lists = $("ul li");
+		lists.css({opacity: 0});
+		lists.each(function(i){ $(this).delay(300*i).animate({opacity:1}); });
+	});
+</script>
