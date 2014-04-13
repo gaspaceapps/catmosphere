@@ -1,6 +1,5 @@
 == README
 
-
 Catmosphere shows you the Air Quality Index (AQI) (http://www.airnowapi.org/) for your location with a cat that changes faces depending on the number to let you know whether the air is healthy or not. We also threw in the weather (http://www.wunderground.com) to make it even better.
 
 **What's AQI?**
@@ -21,37 +20,6 @@ AQI was developed by the United States Environmental Protection Agency (EPA) to 
 
 301+ = Hazardous
 
-
 **How often are these numbers updated?**
 
 The numbers are updated every hour, so you'll know if you need to wear a gas mask when you walk outside or not. We can't help you in case of a zombie apocalypse though.
-
-
-
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
