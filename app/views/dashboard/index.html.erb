@@ -12,23 +12,21 @@
 			<div class="aqi_block">
 				<h1 class="value"><%= @yesterday_air_quality[:aqi] %></h1>
         <h1><%= Time.now.yesterday.strftime('%A') %></h1>
-              <%= @yesterday_temp[0] %>°F
-              <%= @yesterday_temp[1] %>°F
+        <h1><%= @yesterday_temp[0] %>° / <%= @yesterday_temp[1] %>°</h1>
 			</div>
 		</li>
 		<li>
-			<div class="aqi_block">
-				<h1 class="value today"><%= @air_quality.aqi %></h1>
+			<div class="aqi_block today">
+				<h1 class="value"><%= @air_quality.aqi %></h1>
 				<h1>Today</h1>
-        <%= @temp %>°F
+        <h1><%= @temp %>°</h1>
 			</div>
 		</li>
 		<li>
-			<div class="aqi_block">
-				<h1 class="value tomorrow"><%= @tomorrow_air_quality[:aqi] %></h1>
+			<div class="aqi_block tomorrow">
+				<h1 class="value"><%= @tomorrow_air_quality[:aqi] %></h1>
         <h1><%= Time.now.tomorrow.strftime('%A') %></h1>
-              <%= @tomorrow_temp[0] %>°F
-              <%= @tomorrow_temp[1] %>°F
+        <h1><%= @tomorrow_temp[0] %>° / <%= @tomorrow_temp[1] %>°</h1>
 			</div>
 		</li>
 	</ul>

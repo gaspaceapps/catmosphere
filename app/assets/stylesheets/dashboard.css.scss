@@ -23,7 +23,7 @@ body {
   }
   .value {
   	font-size: 46px;
-  	margin-bottom: 10px;
+  	margin-bottom: 20px;
   }
   .today {
 		color: orange;
@@ -31,6 +31,7 @@ body {
 	}
 	.tomorrow { color: lightgray; }
 	h1 { font-size: 28px; margin: 0; }
+	h1:nth-child(2) { margin-bottom: 20px; }
 }
 
 @media (max-width: 600px) {
@@ -41,10 +42,10 @@ body {
 		height: 400px;
 		padding: 50px;
 		margin: -400px 0 0 -150px;
-		img {
-			width: 200px;
+		.image_set {
+			img { width: 200px; }
 		}
-		}
+	}
 }
 
 .aqi_list {
