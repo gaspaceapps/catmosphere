@@ -28,7 +28,10 @@ class AirQuality < ActiveRecord::Base
   def self.get_yesterday_temp(zipcode)
     endpoint = self.compile_yesterday_temp(zipcode)
     parsed_response = JSON.parse(RestClient.get(endpoint))
+    temperatures = [
+    parsed_response['history']['dailysummary'].first['mintempi'],
     parsed_response['history']['dailysummary'].first['maxtempi']
+    ]
   end
 
   def self.get_temp(zipcode)
@@ -40,7 +43,10 @@ class AirQuality < ActiveRecord::Base
   def self.get_tomorrow_temp(zipcode)
     endpoint = self.compile_tomorrow_temp(zipcode)
     parsed_response = JSON.parse(RestClient.get(endpoint))
+    temperatures = [
+    parsed_response['forecast']['simpleforecast']['forecastday'].second['low']['fahrenheit'],
     parsed_response['forecast']['simpleforecast']['forecastday'].second['high']['fahrenheit']
+    ]
   end
 
   private
