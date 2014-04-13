@@ -12,12 +12,12 @@ class AirQuality < ActiveRecord::Base
 
   def self.get_tomorrow(zipcode)
     endpoint = self.compile_tomorrow_endpoint(zipcode)
-    air_quality_response = self.fetch(endpoint, zipcode)
+    self.fetch(endpoint, zipcode)
   end
 
   def self.get_yesterday(zipcode)
     endpoint = self.compile_yesterday_endpoint(zipcode)
-    air_quality_response = self.fetch(endpoint, zipcode)
+    self.fetch(endpoint, zipcode)
   end
 
   def self.fetch(endpoint, zipcode)
