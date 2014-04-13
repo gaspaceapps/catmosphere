@@ -10,6 +10,12 @@ class AirQuality < ActiveRecord::Base
     end
   end
 
+  def self.get_city(zipcode)
+    endpoint = self.compile_temp_endpoint(zipcode)
+    parsed_response = JSON.parse(RestClient.get(endpoint))
+    parsed_response['current_observation']['display_location']['full']
+  end
+
   def self.get_yesterday(zipcode)
     endpoint = self.compile_yesterday_endpoint(zipcode)
     self.fetch(endpoint, zipcode)

@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
       @yesterday_temp = AirQuality.get_yesterday_temp(current_location[:zipcode])
       @temp = AirQuality.get_temp(current_location[:zipcode])
       @tomorrow_temp = AirQuality.get_tomorrow_temp(current_location[:zipcode])
+      @city = AirQuality.get_city(current_location[:zipcode])
     end
   end
 
@@ -20,6 +21,7 @@ class DashboardController < ApplicationController
       @yesterday_temp = AirQuality.get_yesterday_temp(current_location[:zipcode])
       @temp = AirQuality.get_temp(current_location[:zipcode])
       @tomorrow_temp = AirQuality.get_tomorrow_temp(current_location[:zipcode])
+      @city = AirQuality.get_city(current_location[:zipcode])
       render template: 'dashboard/index'
     end
   end
