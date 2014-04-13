@@ -75,6 +75,13 @@ body {
 	}
 }
 
+.footer {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	text-transform: none;
+}
+
 /* ANIMATION */
 .loading {
 	-webkit-animation-name:loading;
