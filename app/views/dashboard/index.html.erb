@@ -3,6 +3,10 @@
     <%= @city %>
 </div>
 
+<div class="logo">
+	<h1>Catmosphere</h1>
+</div>
+
 <div class="panel">
 	<% if @air_quality %>
 	<div class="image_set" style="background: url(<%= asset_path(determine_image(@air_quality.category_name)[:bg]) %>) no-repeat">
