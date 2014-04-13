@@ -11,23 +11,23 @@
 	<ul class="aqi_list">
 		<li>
 			<div class="aqi_block">
-				<h1 class="value"><%= @yesterday_air_quality[:aqi] %></h1>
-        <h1><%= Time.now.yesterday.strftime('%A') %></h1>
-        <h1><%= @yesterday_temp[0] %>° / <%= @yesterday_temp[1] %>°</h1>
+				<h2 class="value"><%= @yesterday_air_quality[:aqi] %></h2>
+        <h2><%= Time.now.yesterday.strftime('%A') %></h2>
+        <h2><%= @yesterday_temp[0] %>° / <%= @yesterday_temp[1] %>°</h2>
 			</div>
 		</li>
 		<li>
 			<div class="aqi_block today">
-				<h1 class="value"><%= @air_quality.aqi %></h1>
-				<h1>Today</h1>
-        <h1><%= @temp %>°</h1>
+				<h2 class="value"><%= @air_quality.aqi %></h2>
+				<h2>Today</h2>
+        <h2><%= @temp %>°</h2>
 			</div>
 		</li>
 		<li>
 			<div class="aqi_block tomorrow">
-				<h1 class="value"><%= @tomorrow_air_quality[:aqi] %></h1>
-        <h1><%= Time.now.tomorrow.strftime('%A') %></h1>
-        <h1><%= @tomorrow_temp[0] %>° / <%= @tomorrow_temp[1] %>°</h1>
+				<h2 class="value"><%= @tomorrow_air_quality[:aqi] %></h2>
+        <h2><%= Time.now.tomorrow.strftime('%A') %></h2>
+        <h2><%= @tomorrow_temp[0] %>° / <%= @tomorrow_temp[1] %>°</h2>
 			</div>
 		</li>
 	</ul>
@@ -35,7 +35,7 @@
 	<div class="loading">
 		<%= image_tag(asset_path('astronaut.png')) %>
 	</div>
-	<h1>Loading...</h1>
+	<h2>Loading...</h2>
 	<% end %>
 </div>
 
