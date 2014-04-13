@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
       current_timezone = cookies[:current_timezone]
       @air_quality = AirQuality.get(current_location[:zipcode])
       @yesterday_air_quality = AirQuality.get_yesterday(current_location[:zipcode])
+      @tomorrow_air_quality =   AirQuality.get_tomorrow(current_location[:zipcode])
     end
   end
 end
