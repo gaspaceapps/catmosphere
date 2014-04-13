@@ -32,6 +32,7 @@ body {
 	.tomorrow { color: lightgray; }
 	h1 { font-size: 28px; margin: 0; }
 	h1:nth-child(2) { margin-bottom: 20px; }
+	h1:nth-child(3) { font-size: 20px; }
 }
 
 @media (max-width: 600px) {
