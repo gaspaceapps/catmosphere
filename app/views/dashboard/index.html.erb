@@ -10,27 +10,21 @@
 	<ul class="aqi_list">
 		<li>
 			<div class="aqi_block">
-				<h1 class="value">N/A</h1>
-				<h1>Last Year</h1>
-			</div>
-		</li>
-		<li>
-			<div class="aqi_block">
 				<h1 class="value"><%= @yesterday_air_quality[:aqi] %></h1>
-				<h1>Yesterday</h1>
+        <h1><%= Time.now.yesterday.strftime('%A') %></h1>
 			</div>
 		</li>
 		<li>
 			<div class="aqi_block">
 				<h1 class="value today"><%= @air_quality.aqi %></h1>
 				<h1>Today</h1>
-              <%= @temp %>°F
+        <%= @temp %>°F
 			</div>
 		</li>
 		<li>
 			<div class="aqi_block">
 				<h1 class="value tomorrow"><%= @tomorrow_air_quality[:aqi] %></h1>
-				<h1>Tomorrow</h1>
+        <h1><%= Time.now.tomorrow.strftime('%A') %></h1>
 			</div>
 		</li>
 	</ul>
