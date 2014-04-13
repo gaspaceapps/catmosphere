@@ -5,10 +5,24 @@ class AirQuality < ActiveRecord::Base
       cached_air_quality
     else
       endpoint = self.compile_today_endpoint(zipcode)
-      parsed_response = JSON.parse(RestClient.get(endpoint))
-      air_quality_response = format_air_quality_hash(parsed_response, zipcode)
+      air_quality_response = self.fetch(endpoint, zipcode)
       self.cacheify(air_quality_response)
     end
+  end
+
+  def self.get_tomorrow(zipcode)
+    endpoint = self.compile_tomorrow_endpoint(zipcode)
+    air_quality_response = self.fetch(endpoint, zipcode)
+  end
+
+  def self.get_yesterday(zipcode)
+    endpoint = self.compile_yesterday_endpoint(zipcode)
+    air_quality_response = self.fetch(endpoint, zipcode)
+  end
+
+  def self.fetch(endpoint, zipcode)
+    parsed_response = JSON.parse(RestClient.get(endpoint))
+    format_air_quality_hash(parsed_response, zipcode)
   end
 
   private
@@ -16,9 +30,9 @@ class AirQuality < ActiveRecord::Base
   def self.format_air_quality_hash(response, zipcode)
     {
         zipcode: zipcode,
-        aqi: response.first['AQI'],
-        category_number: response.first['Category']['Number'],
-        category_name: response.first['Category']['Name']
+        aqi: response.last['AQI'],
+        category_number: response.last['Category']['Number'],
+        category_name: response.last['Category']['Name']
     }
   end
 
@@ -32,5 +46,17 @@ class AirQuality < ActiveRecord::Base
 
   def self.compile_today_endpoint(zipcode)
     "http://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=#{zipcode}&distance=25&API_KEY=408731F5-9C4F-4791-A3B9-E5BA5EE0F591"
+  end
+
+  def self.compile_tomorrow_endpoint(zipcode)
+    "http://www.airnowapi.org/aq/forecast/zipCode/?format=application/json&zipCode=#{zipcode}&date=#{(Time.now + 24.hours).strftime('%F')}&distance=25&API_KEY=408731F5-9C4F-4791-A3B9-E5BA5EE0F591"
+  end
+
+  def self.compile_yesterday_endpoint(zipcode)
+    "http://www.airnowapi.org/aq/observation/zipCode/historical/?format=application/json&zipCode=#{zipcode}&date=#{(Time.now - 24.hours).strftime('%F')}T00-0000&distance=25&API_KEY=408731F5-9C4F-4791-A3B9-E5BA5EE0F591"
+  end
+
+  def self.compile_year_endpoint(zipcode)
+    "http://www.airnowapi.org/aq/observation/zipCode/historical/?format=application/json&zipCode=#{zipcode}&date=#{(Time.now - 1.year).strftime('%F')}T00-0000&distance=25&API_KEY=408731F5-9C4F-4791-A3B9-E5BA5EE0F591"
   end
 end
